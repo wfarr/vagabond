@@ -28,6 +28,12 @@ module Vagabond
           ::Etc.getgrgid(::File.stat(actual.title).gid).name == expected
         end
       end
+
+      RSpec::Matchers.define :have_file_type do |expected|
+        match do |actual|
+          ::File.ftype(actual.title) == expected.to_s
+        end
+      end
     end
   end
 end
