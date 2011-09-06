@@ -1,10 +1,15 @@
 module Vagabond
   module Resources
     class File
-      def initialize(name, options)
+      attr_accessor :name, :owner, :group
+      
+      def initialize(name, options = {})
         @name = name
-        options.each do |key, value|
-          self.instance_variable_set("@#{key}".to_sym, value)
+        if options[:owner]
+          @owner = options[:owner]
+        end
+        if options[:group]
+          @group = options[:group]
         end
       end
     end
