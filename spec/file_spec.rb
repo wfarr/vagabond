@@ -8,6 +8,6 @@ describe file("/etc/motd") do
   it { should_not exist }
 end
 
-describe file("~/.git/config") do
-  it { should have_owner('wfarr') }
+describe file("/Users/wfarr/.gitconfig") do
+  it { should have_owner(ENV['USER']) }
 end

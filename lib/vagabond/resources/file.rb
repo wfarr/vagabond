@@ -16,8 +16,12 @@ module Vagabond
         end
       end
       
-      def to_s
+      def title
         @path || @name
+      end
+      
+      def to_s
+        "file(#{title})"
       end
     end
   end
