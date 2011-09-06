@@ -5,5 +5,5 @@ require 'vagabond'
 include Vagabond
 
 describe file("/etc/motd") do
-  it { should exist }
+  it { should_not exist }
 end
