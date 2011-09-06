@@ -2,11 +2,15 @@ require 'rubygems'
 require 'vagrant'
 
 
-task :test do
-  env = Vagrant::Environment.new
-  env.vms.each do | name, vm |
-    vm.ssh.execute do | ssh |
-      puts ssh.exec!('cd /vagrant_data/test && ruby test.rb')
+namespace :vagabond do
+  task :spec do
+    env = Vagrant::Environment.new
+    env.cli("up")
+    env.cli("provision")
+    env.vms.each do | name, vm |
+      vm.ssh.execute do | ssh |
+        puts ssh.exec!('cd /vagrant && rspec spec/*_spec.rb')
+      end
     end
   end
 end
