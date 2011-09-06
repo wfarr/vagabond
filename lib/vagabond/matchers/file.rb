@@ -33,6 +33,10 @@ module Vagabond
         match do |actual|
           ::File.ftype(actual.title) == expected.to_s
         end
+        
+        description do
+          "should be a #{expected}"
+        end
       end
     end
   end
