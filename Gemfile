@@ -1,5 +1,6 @@
 source :rubygems
 
+gem 'rake'
 gem 'vagrant'
 
 group :test do
