@@ -22,6 +22,12 @@ module Vagabond
           ::Etc.getpwuid(::File.stat(actual.title).uid).name == expected
         end
       end
+
+      RSpec::Matchers.define :have_group do |expected|
+        match do |actual|
+          ::Etc.getgrgid(::File.stat(actual.title).gid).name == expected
+        end
+      end
     end
   end
 end

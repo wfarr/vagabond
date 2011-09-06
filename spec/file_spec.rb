@@ -10,4 +10,6 @@ end
 
 describe file("#{ENV['HOME']}/.gitconfig") do
   it { should have_owner(ENV['USER']) }
+  it { should have_group('staff') }
 end
+
