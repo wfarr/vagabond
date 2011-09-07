@@ -3,12 +3,16 @@ require 'vagrant'
 
 
 namespace :vagabond do
+  desc "Run specs on vagabond"
   task :spec do
     env = Vagrant::Environment.new
+    puts "vagrant up"
     env.cli("up")
+    puts "vagrant provision"
     env.cli("provision")
     env.vms.each do | name, vm |
       vm.ssh.execute do | ssh |
+        puts "rspec"
         puts ssh.exec!('cd /vagrant && rspec spec/*_spec.rb')
       end
     end
