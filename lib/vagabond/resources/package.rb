@@ -19,6 +19,10 @@ module Vagabond
         aptitude.match(/^State: (.*)$/)[1] rescue nil
       end
 
+      def version
+        aptitude.match(/^Version: (.*)$/)[1] rescue nil
+      end
+
       private
       def aptitude
         results = `sudo aptitude show #{@name}`

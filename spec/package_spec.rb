@@ -6,6 +6,7 @@ include Vagabond
 
 describe package("tar") do
   it { should be_installed }
+  it { should be_version('1.22-2ubuntu1') }
 end
 
 describe package("nginx") do
