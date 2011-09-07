@@ -12,6 +12,7 @@ module Vagabond
     
     def package(name, options = {})
       Vagabond::Resources::Package.new(name, options)
+    end
 
     def service(name)
       Vagabond::Resources::Service.new(name)
