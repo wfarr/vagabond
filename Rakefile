@@ -1,6 +1,6 @@
 require 'rubygems'
 require 'vagrant'
-
+require 'rainbow'
 
 namespace :vagabond do
   task :spec do
@@ -9,7 +9,26 @@ namespace :vagabond do
     env.cli("provision")
     env.vms.each do | name, vm |
       vm.ssh.execute do | ssh |
-        puts ssh.exec!('cd /vagrant && rspec spec/*_spec.rb')
+        stdout = []
+        ssh.exec!('cd /vagrant && rspec spec/*_spec.rb') do |channel, stream, data|
+          if stream == :stdout
+            if data =~ /\s+should/
+              if data =~ /FAILED/
+                print data.foreground(:red)
+              else
+                print data.foreground(:green)
+              end
+            elsif data =~ /\d+ examples?, \d+ failure/
+              if data =~ /0 failure/
+                print data.foreground(:green)
+              else
+                print data.foreground(:red)
+              end
+            else
+              print "".reset + data.reset
+            end
+          end
+        end
       end
     end
   end
