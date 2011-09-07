@@ -15,3 +15,11 @@ execute "bundle install" do
   cwd "/vagrant"
   action :run
 end
+
+execute "apt-get update" do
+  action :run
+end
+
+package 'apache2-mpm-worker' do
+  action :install
+end

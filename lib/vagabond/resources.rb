@@ -2,6 +2,7 @@ $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), 'resources'))
 
 require 'vagabond/resources/file'
 require 'vagabond/resources/package'
+require 'vagabond/resources/service'
 
 module Vagabond
   module Resources
@@ -11,6 +12,9 @@ module Vagabond
     
     def package(name, options = {})
       Vagabond::Resources::Package.new(name, options)
+
+    def service(name)
+      Vagabond::Resources::Service.new(name)
     end
   end
 end
