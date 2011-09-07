@@ -5,7 +5,7 @@ require 'vagabond'
 include Vagabond
 
 describe package("tar") do
-  it { should_not be_installed }
+  it { should be_installed }
 end
 
 describe package("nginx") do
