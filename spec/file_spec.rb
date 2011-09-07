@@ -15,3 +15,11 @@ describe file("/etc") do
   it { should exist }
   it { should have_file_type(:directory) }
 end
+
+describe package("tar") do
+  it { should be_installed }
+end
+
+describe package("apache2") do
+  it { should_not be_installed }
+end

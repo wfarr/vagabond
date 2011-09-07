@@ -16,7 +16,7 @@ module Vagabond
           "expected #{actual.to_s} would not exist"
         end
       end
-      
+
       RSpec::Matchers.define :have_owner do |expected|
         match do |actual|
           ::Etc.getpwuid(::File.stat(actual.title).uid).name == expected
@@ -33,7 +33,7 @@ module Vagabond
         match do |actual|
           ::File.ftype(actual.title) == expected.to_s
         end
-        
+
         description do
           "should be a #{expected}"
         end
